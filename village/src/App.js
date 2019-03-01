@@ -15,6 +15,8 @@ class App extends Component {
     };
   }
 
+  // Read
+
   componentDidMount() {
     axios.get('http://localhost:3333/smurfs')
       .then(res => {
@@ -25,14 +27,16 @@ class App extends Component {
       })
   }
 
+  // Create
+
   addSmurf = (e, smurf) => {
     e.preventDefault();
-
     axios.post('http://localhost:3333/smurfs', smurf)
       .then(res => {
         this.setState({
           smurfs: res.data
         });
+        this.props.history.push('/');
       })
 
     this.setState({
@@ -40,6 +44,19 @@ class App extends Component {
       age: '',
       height: ''
     });
+  }
+
+  // Delete
+
+  deleteSmurf = (e, id) => {
+    e.preventDefault();
+    axios.delete(`http://localhost:3333/smurfs/${id}`, id)
+      .then(res =>{
+        this.setState({
+          smurfs: res.data
+        });
+        this.props.history.push('/');
+      })
   }
 
   // You'll need to make sure you have the right properties on state and pass them down to props.
@@ -66,6 +83,7 @@ class App extends Component {
           <Smurfs 
             {...props}
             smurfs={this.state.smurfs}
+            deleteSmurf={this.deleteSmurf}
           />
         )}
         />
