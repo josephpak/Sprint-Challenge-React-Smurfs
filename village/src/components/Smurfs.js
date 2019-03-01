@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
-import Smurf from './Smurf';
+import SmurfCard from './SmurfCard';
 
 class Smurfs extends Component {
   render() {
@@ -8,9 +9,9 @@ class Smurfs extends Component {
       <div className="Smurfs">
         <h1>Smurf Village</h1>
         <ul>
-          {this.props.smurfs.map(smurf => {
-            return (
-              <Smurf
+          {this.props.smurfs.map(smurf => (
+              <Link to={`/smurf/${smurf.id}`}>
+              <SmurfCard
                 name={smurf.name}
                 id={smurf.id}
                 age={smurf.age}
@@ -20,15 +21,16 @@ class Smurfs extends Component {
                 deleteSmurf={this.props.deleteSmurf}
                 prepopulateForm={this.props.prepopulateForm}
               />
-            );
-          })}
+              </Link>
+            )
+          )}
         </ul>
       </div>
     );
   }
 }
 
-Smurf.defaultProps = {
+Smurfs.defaultProps = {
  smurfs: [],
 };
 

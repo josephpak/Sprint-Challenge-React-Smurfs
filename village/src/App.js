@@ -5,6 +5,8 @@ import { NavLink, Route } from 'react-router-dom';
 import './App.css';
 import SmurfForm from './components/SmurfForm';
 import Smurfs from './components/Smurfs';
+import SmurfPage from './components/SmurfPage';
+import Home from './components/Home'
 
 class App extends Component {
   constructor(props) {
@@ -85,10 +87,15 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <NavLink to='/'>Smurf List</NavLink>
+        <NavLink to='/smurf-list'>Smurf List</NavLink>
         <NavLink to='/smurf-form'>Add a Smurf</NavLink>
 
         {/* Routes */}
+        <Route 
+        exact
+        path='/'
+        component={Home}
+        />
         <Route 
         path='/smurf-form'
         render={props => (
@@ -102,7 +109,7 @@ class App extends Component {
         />
         <Route 
         exact
-        path='/'
+        path='/smurf-list'
         render={props => (
           <Smurfs 
             {...props}
@@ -111,6 +118,17 @@ class App extends Component {
             prepopulateForm={this.prepopulateForm}
           />
         )}
+        />
+        <Route
+          path="/smurf/:id"
+          render={props => (
+            <SmurfPage
+              {...props}
+              smurfs={this.state.smurfs}
+              deleteSmurf={this.deleteSmurf}
+              prepopulateForm={this.prepopulateForm}
+            />
+          )}
         />
 
       </div>
