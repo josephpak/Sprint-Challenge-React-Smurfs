@@ -114,6 +114,7 @@ class App extends Component {
     return (
       <AppWrapper>
         <NavWrapper>
+          <NavLink to='/'>Home</NavLink>
           <NavLink to='/smurf-list'>Smurf Village</NavLink>
           <NavLink to='/smurf-form'>Add a Smurf</NavLink>
         </NavWrapper>

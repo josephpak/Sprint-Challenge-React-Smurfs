@@ -1,4 +1,13 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
+
+const FormWrapper = styled.div`
+  h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+  }
+`
 
 class SmurfForm extends Component {
   constructor(props) {
@@ -52,7 +61,7 @@ class SmurfForm extends Component {
 
   render() {
     return (
-      <div className="SmurfForm">
+      <FormWrapper>
         <h1>{`${this.props.activeSmurf ? "Update" : "Add New"} Smurf to Village`}</h1>
         <form onSubmit={this.handleSubmit}>
           <input
@@ -75,7 +84,7 @@ class SmurfForm extends Component {
           />
           <button type="submit">{`${this.props.activeSmurf ? "Update" : "Add New"} Smurf to Village`}</button>
         </form>
-      </div>
+      </FormWrapper>
     );
   }
 }
