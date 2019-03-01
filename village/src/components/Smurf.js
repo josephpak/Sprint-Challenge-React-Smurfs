@@ -7,6 +7,9 @@ const Smurf = props => {
       <strong>{props.height} tall</strong>
       <p>{props.age} smurf years old</p>
       <button
+      onClick={e => props.prepopulateForm(e, props.smurf)} 
+      >Update Smurf</button>
+      <button
       onClick={e => props.deleteSmurf(e, props.id)} 
       >Banish Smurf</button>
     </div>

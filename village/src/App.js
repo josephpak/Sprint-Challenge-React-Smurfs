@@ -59,6 +59,28 @@ class App extends Component {
       })
   }
 
+  // Update
+
+  prepopulateForm = (e, smurf) => {
+    e.preventDefault();
+    this.setState({
+      activeSmurf: smurf
+    });
+    this.props.history.push('/smurf-form')
+  }
+
+  updateSmurf = (e, smurf) => {
+    e.preventDefault();
+    axios.put(`http://localhost:3333/smurfs/${smurf.id}`, smurf)
+      .then(res =>{
+        console.log(res)
+        this.setState({
+          smurfs: res.data
+        });
+        this.props.history.push('/');
+      })
+  }
+
   // You'll need to make sure you have the right properties on state and pass them down to props.
   render() {
     return (
@@ -73,6 +95,8 @@ class App extends Component {
           <SmurfForm
             {...props}
             addSmurf={this.addSmurf}
+            activeSmurf={this.state.activeSmurf}
+            updateSmurf={this.updateSmurf}
           />
         )}
         />
@@ -84,6 +108,7 @@ class App extends Component {
             {...props}
             smurfs={this.state.smurfs}
             deleteSmurf={this.deleteSmurf}
+            prepopulateForm={this.prepopulateForm}
           />
         )}
         />
