@@ -1,31 +1,53 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
-import Smurf from './Smurf';
+import SmurfCard from './SmurfCard';
+
+const ListWrapper = styled.div`
+  
+  padding-top: 50px;
+
+  h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  a {
+    text-decoration: none;
+    color: black;
+  }
+`
 
 class Smurfs extends Component {
   render() {
     return (
-      <div className="Smurfs">
+      <ListWrapper>
         <h1>Smurf Village</h1>
         <ul>
-          {this.props.smurfs.map(smurf => {
-            return (
-              <Smurf
+          {this.props.smurfs.map(smurf => (
+              <Link to={`/smurf/${smurf.id}`}>
+              <SmurfCard
                 name={smurf.name}
                 id={smurf.id}
                 age={smurf.age}
                 height={smurf.height}
                 key={smurf.id}
+                smurf={smurf}
+                deleteSmurf={this.props.deleteSmurf}
+                prepopulateForm={this.props.prepopulateForm}
               />
-            );
-          })}
+              </Link>
+            )
+          )}
         </ul>
-      </div>
+      </ListWrapper>
     );
   }
 }
 
-Smurf.defaultProps = {
+Smurfs.defaultProps = {
  smurfs: [],
 };
 
