@@ -67,14 +67,9 @@ class App extends Component {
         this.setState({
           smurfs: res.data
         });
-        this.props.history.push('/');
+        this.props.history.push('/smurf-list');
       })
 
-    this.setState({
-      name: '',
-      age: '',
-      height: ''
-    });
   }
 
   // Delete
@@ -86,7 +81,7 @@ class App extends Component {
         this.setState({
           smurfs: res.data
         });
-        this.props.history.push('/');
+        this.props.history.push('/smurf-list');
       })
   }
 
@@ -106,10 +101,12 @@ class App extends Component {
       .then(res =>{
         console.log(res)
         this.setState({
+          activeSmurf: null,
           smurfs: res.data
         });
-        this.props.history.push('/');
+        this.props.history.push('/smurf-list');
       })
+
   }
 
   // You'll need to make sure you have the right properties on state and pass them down to props.
