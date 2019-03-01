@@ -1,12 +1,41 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { NavLink, Route } from 'react-router-dom';
+import styled from 'styled-components';
 
+import './reset.css';
 import './App.css';
 import SmurfForm from './components/SmurfForm';
 import Smurfs from './components/Smurfs';
 import SmurfPage from './components/SmurfPage';
 import Home from './components/Home'
+
+const AppWrapper = styled.div`
+  padding: 0 6%;
+  font-size: 62.5%;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  font-size: 1rem;
+`
+
+const NavWrapper = styled.nav`
+  display: flex;
+  height: 50px;
+  align-items: center;
+  width: 100%;
+  justify-content: flex-end;
+
+  a {
+    text-decoration: none;
+    color: black;
+    padding: 10px;
+  }
+`
+
+const ContentWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`
 
 class App extends Component {
   constructor(props) {
@@ -86,10 +115,13 @@ class App extends Component {
   // You'll need to make sure you have the right properties on state and pass them down to props.
   render() {
     return (
-      <div className="App">
-        <NavLink to='/smurf-list'>Smurf List</NavLink>
-        <NavLink to='/smurf-form'>Add a Smurf</NavLink>
-
+      <AppWrapper>
+        <NavWrapper>
+          <NavLink to='/smurf-list'>Smurf Village</NavLink>
+          <NavLink to='/smurf-form'>Add a Smurf</NavLink>
+        </NavWrapper>
+        
+        <ContentWrapper>
         {/* Routes */}
         <Route 
         exact
@@ -130,8 +162,9 @@ class App extends Component {
             />
           )}
         />
+        </ContentWrapper>
 
-      </div>
+      </AppWrapper>
     );
   }
 }

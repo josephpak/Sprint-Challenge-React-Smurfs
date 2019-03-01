@@ -1,12 +1,29 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 import SmurfCard from './SmurfCard';
+
+const ListWrapper = styled.div`
+  
+  padding-top: 50px;
+
+  h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  a {
+    text-decoration: none;
+    color: black;
+  }
+`
 
 class Smurfs extends Component {
   render() {
     return (
-      <div className="Smurfs">
+      <ListWrapper>
         <h1>Smurf Village</h1>
         <ul>
           {this.props.smurfs.map(smurf => (
@@ -25,7 +42,7 @@ class Smurfs extends Component {
             )
           )}
         </ul>
-      </div>
+      </ListWrapper>
     );
   }
 }
