@@ -10,7 +10,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      smurfs: [],
+      activeSmurf: null,
+      smurfs: []
     };
   }
 
@@ -22,6 +23,23 @@ class App extends Component {
           smurfs: res.data
         })
       })
+  }
+
+  addSmurf = (e, smurf) => {
+    e.preventDefault();
+
+    axios.post('http://localhost:3333/smurfs', smurf)
+      .then(res => {
+        this.setState({
+          smurfs: res.data
+        });
+      })
+
+    this.setState({
+      name: '',
+      age: '',
+      height: ''
+    });
   }
 
   // You'll need to make sure you have the right properties on state and pass them down to props.
@@ -37,6 +55,7 @@ class App extends Component {
         render={props => (
           <SmurfForm
             {...props}
+            addSmurf={this.addSmurf}
           />
         )}
         />
